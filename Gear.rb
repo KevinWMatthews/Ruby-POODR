@@ -40,3 +40,17 @@ class Gear
     (rim + 2*tire) * ratio
   end
 end
+
+class WheelData
+  attr_reader :data
+  def initialize(data)
+    @data = data
+  end
+
+  def diameters
+    #diameters depends on the array's structure
+    #It must know that 0 is rim, 1 is tire
+    data.collect {|cell|
+      cell[0] + (cell[1] * 2)}
+  end
+end
