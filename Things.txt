@@ -1,0 +1,40 @@
+Object-oriented design models the world as a series of messagese that pass betweeen objects.
+
+Getting a message to the correct target requires that the sender know something about the receiver. This creates a dependency. OOD is about managing dependencies in such a way to make objects tolerate change well; arranging code so that it is easy to change.
+
+Agile guarantees change (pgs 8-9).
+
+
+We can solve problems using principles and patterns.
+
+Principles:
+  SOLID
+    Single-responsibility
+    Open-closed
+    Liskov substitution
+    Interface segregation
+    Dependency inversion
+  DRY
+    Don't Repeat Yourself
+  LoD
+    Law of Demeter
+  TRUE
+    Transparent
+      consequences of change should be obvious
+    Reasonable
+      difficulty of change proportional to its size
+    Usable
+      Reausable, really
+    Exemplary
+      Encourages the above qualities for future users
+
+Patterns:
+  Check out the Gang of Four's "Design Patterns" to learn about patterns.
+
+
+Procedural languages have data types and distinct behaviors
+Object-oriented languages combine data and behavior in objects.
+A class-based OO language allows you to create classes, which are blueprints to create identical objects. A class defines methods (behavior) and attributes (data).
+On class can instantiate (create) multiple instances of an object. Each object implements the same methods and has the same attribute names.
+
+
