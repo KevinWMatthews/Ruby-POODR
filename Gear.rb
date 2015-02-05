@@ -42,15 +42,26 @@ class Gear
 end
 
 class WheelData
-  attr_reader :data
+  attr_reader :wheels
   def initialize(data)
-    @data = data
+    @wheels = wheelify(data)
   end
 
   def diameters
-    #diameters depends on the array's structure
-    #It must know that 0 is rim, 1 is tire
-    data.collect {|cell|
-      cell[0] + (cell[1] * 2)}
+    wheels.collect {|wheel|
+      #We now have meaningful, abstract references to data
+      #using accessor methods. diameters doesn't know anything
+      #about how wheel data is stored
+      wheel.rim + (wheel.tire * 2 )}
+  end
+
+  #A Struct is used because the attributes are fixed.
+  #rim and tire are accessor methods
+  Wheel = Struct.new(:rim, :tire)
+  def wheelify(data)
+    #The structure of the array is now buried here.
+    #It is hidden using the wheelify method.
+    data.collect { |cell|
+      Wheel.new(cell[0], cell[1]) }
   end
 end
