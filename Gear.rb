@@ -12,14 +12,20 @@ puts ratio  #1.11
 =end
 
 class Gear
-  attr_reader :chainring, :cog
+  attr_reader :chainring, :cog, :rim, :tire
 
-  def initialize(chainring, cog)
+  def initialize(chainring, cog, rim, tire)
     @chainring = chainring
     @cog = cog
+    @rim = rim
+    @tire = tire
   end
 
   def ratio
     chainring / cog.to_f
+  end
+
+  def gear_inches # wheel diameter * gear ratio
+    (rim + 2*tire) * ratio
   end
 end

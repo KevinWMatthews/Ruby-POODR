@@ -38,3 +38,8 @@ A class-based OO language allows you to create classes, which are blueprints to 
 On class can instantiate (create) multiple instances of an object. Each object implements the same methods and has the same attribute names.
 
 
+Single-responsibility:
+Ask your classes questions about each method and variable that is public:
+  Please, Mr. <Class>, what is your <method>?
+  Please, Mr. <Class>, what is your <attribute>?
+You should be able to describe your class in one sentance without using the word 'and'. This is called cohesion.
