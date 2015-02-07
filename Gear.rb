@@ -22,10 +22,10 @@ class Gear
   #this one definition rather than every reference to the variable.
   attr_reader :chainring, :cog, :wheel
 
-  def initialize(chainring, cog, rim, tire)
+  def initialize(chainring, cog, wheel=nil)
     @chainring = chainring
     @cog = cog
-    @wheel = Wheel.new(rim, tire)
+    @wheel = wheel
   end
 
   def ratio
@@ -38,17 +38,26 @@ class Gear
   def gear_inches
     wheel.diameter * ratio
   end
-
-  #Embedding Wheel inside gear may not be single-responsibility,
-  #but we're delaying a decision about structure until our goals
-  #are more clear
-  Wheel = Struct.new(:rim, :tire) do
-    def diameter
-      rim + tire * 2
-    end
-  end
 end
 
+#Refactoring to include a circumference method
+#There is now a thoroughly convincing reasont to have Wheel
+#independent of Gear.
+class Wheel
+  attr_reader :rim, :tire
+  def initialize(rim, tire)
+    @rim = rim
+    @tire = tire
+  end
+
+  def diameter
+    rim + tire * 2
+  end
+
+  def circumference
+    diameter * Math::PI
+  end
+end
 
 #The gear class isn't using WheelData; this was a separate example.
 class WheelData

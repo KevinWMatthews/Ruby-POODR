@@ -12,3 +12,17 @@ require_relative 'Gear'
 
 puts "Wheel diameters:"
 puts WheelData.new([[622, 20], [622, 23], [559, 30], [559, 40]]).diameters
+puts
+
+#why the @ ?
+@wheel = Wheel.new(26, 1.5)
+puts "Wheel circumference:"
+puts @wheel.circumference
+puts "Wheel diameter:"
+puts @wheel.diameter
+
+puts "Gear inches:"
+puts Gear.new(52, 11, @wheel).gear_inches
+
+puts "Ratio (which doesn't need a wheel):"
+puts Gear.new(52, 11).ratio
