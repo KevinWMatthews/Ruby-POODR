@@ -20,13 +20,12 @@ class Gear
   #end
   #If the definition of a cog ever changes, you need only change
   #this one definition rather than every reference to the variable.
-  attr_reader :chainring, :cog, :rim, :tire
+  attr_reader :chainring, :cog, :wheel
 
   def initialize(chainring, cog, rim, tire)
     @chainring = chainring
     @cog = cog
-    @rim = rim
-    @tire = tire
+    @wheel = Wheel.new(rim, tire)
   end
 
   def ratio
@@ -36,11 +35,22 @@ class Gear
     #Not @chainring / @cog.to_f
   end
 
-  def gear_inches # wheel diameter * gear ratio
-    (rim + 2*tire) * ratio
+  def gear_inches
+    wheel.diameter * ratio
+  end
+
+  #Embedding Wheel inside gear may not be single-responsibility,
+  #but we're delaying a decision about structure until our goals
+  #are more clear
+  Wheel = Struct.new(:rim, :tire) do
+    def diameter
+      rim + tire * 2
+    end
   end
 end
 
+
+#The gear class isn't using WheelData; this was a separate example.
 class WheelData
   attr_reader :wheels
   def initialize(data)
