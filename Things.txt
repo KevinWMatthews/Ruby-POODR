@@ -43,6 +43,7 @@ Ask your classes questions about each method and variable that is public:
   Please, Mr. <Class>, what is your <method>?
   Please, Mr. <Class>, what is your <attribute>?
 You should be able to describe your class in one sentance without using the word 'and'. This is called cohesion.
+Methods should have a single responsibility, too.
 
 Depend on behavior, not data.
   Data is referenced in multiple places. Behavior is defined once. Therefore behavior is easier to change.

@@ -48,11 +48,15 @@ class WheelData
   end
 
   def diameters
-    wheels.collect {|wheel|
-      #We now have meaningful, abstract references to data
-      #using accessor methods. diameters doesn't know anything
-      #about how wheel data is stored
-      wheel.rim + (wheel.tire * 2 )}
+    #Split up the responsibility of iterating and calculating
+    wheels.collect { |wheel| diameter(wheel) }
+  end
+
+  def diameter(wheel)
+    #We now have meaningful, abstract references to data
+    #using accessor methods. diameters doesn't know anything
+    #about how wheel data is stored
+    wheel.rim + (wheel.tire * 2)
   end
 
   #A Struct is used because the attributes are fixed.
