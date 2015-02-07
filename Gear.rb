@@ -14,13 +14,22 @@ puts ratio  #1.11
 class Gear
   attr_reader :chainring, :cog, :wheel
 
-  #Notice that all users of Gear depend on the order of
-  #the initializer arguments.
-  #We can break this dependency using a hash and symbols.
+  #Default values for arguments using fetch method
+  #Can also specify with ||, but you must be careful
   def initialize(args)
+    # @chainring = args.fetch(:chainring, 40)
+    # @cog       = args.fetch(:cog, 18)
+    # @wheel     = args[:wheel] #This argument must be specifiec
+
+    #Can also use the merge method
+    args = defaults.merge(args)
     @chainring = args[:chainring]
-    @cog       = args[:cog]
-    @wheel     = args[:wheel]
+    @cog = args[:cog]
+    @wheel = args[:wheel]
+  end
+
+  def defaults
+    {:chainring => 40, :cog => 18}
   end
 
   def ratio
