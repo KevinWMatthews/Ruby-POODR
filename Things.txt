@@ -48,3 +48,8 @@ Methods should have a single responsibility, too.
 Depend on behavior, not data.
   Data is referenced in multiple places. Behavior is defined once. Therefore behavior is easier to change.
   In practice, hide instance variables in accessor methods!
+
+
+Managing dependencies:
+An object depends on another when a change in the other forces a change in the original.
+Dependencies are like a dot of glue.
