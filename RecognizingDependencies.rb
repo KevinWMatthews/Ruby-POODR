@@ -14,13 +14,13 @@ Some dependency is necessary (the classes must communicate).
 Our goal is to make these dependencies more reasonable.
 =end
 class Gear
-  attr_reader :chainring, :cog, :rim, :tire
+  attr_reader :chainring, :cog, :wheel
 
-  def initialize(chainring, cog, rim, tire)
+  #Notice that the initialization parameters were also changed
+  def initialize(chainring, cog, wheel)
     @chainring = chainring
     @cog = cog
-    @rim = rim
-    @tire = tire
+    @wheel = wheel
   end
 
   def ratio
@@ -28,7 +28,14 @@ class Gear
   end
 
   def gear_inches
-    Wheel.new(rim, tire).diameter * ratio
+    #This refers directly to a wheel, so it can't refer to any
+    #other object that also has a diameter and gear ratio.
+    #Gear shouldn't communicate to a Wheel; it should communicate
+    #with any object that has a diameter and uses gears.
+    # Wheel.new(rim, tire).diameter * ratio
+
+    #Gear now refers to an object that can respond to diameter
+    wheel.diameter * ratio
   end
 end
 
@@ -48,4 +55,4 @@ class Wheel
   end
 end
 
-puts Gear.new(52, 11, 26, 1.5).gear_inches
+puts Gear.new(52, 11, Wheel.new(26, 1.5)).gear_inches
