@@ -17,10 +17,10 @@ class Gear
   #Notice that all users of Gear depend on the order of
   #the initializer arguments.
   #We can break this dependency using a hash and symbols.
-  def initialize(chainring, cog, wheel=nil)
-    @chainring = chainring
-    @cog = cog
-    @wheel = wheel
+  def initialize(args)
+    @chainring = args[:chainring]
+    @cog       = args[:cog]
+    @wheel     = args[:wheel]
   end
 
   def ratio
