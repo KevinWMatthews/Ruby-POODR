@@ -53,3 +53,15 @@ Depend on behavior, not data.
 Managing dependencies:
 An object depends on another when a change in the other forces a change in the original.
 Dependencies are like a dot of glue.
+
+Depend on classes that change less.
+  Some classes have more requirement changes.
+  Concrete classes change more frequently than abstract classes.
+  Changing a class with many dependents will have widespread consequences.
+
+
+An application is made up of classes but defined by messages.
+Messages are sent by interfaces; much of design concerns creating interfaces.
+Interfaces can be within classes or across classes (which defines a virtual class?).
+A public interface should read like a descript of the class's responsibilities. It should be stable.
+A private interface handles all the details. It may not even be referenced in tests. Is is changeable.
