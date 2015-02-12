@@ -87,3 +87,9 @@ Law of Demeter
     Too much context: trip requires a bicycle with a wheel and a tire.
     Customer can't be reused for much else.
   Your design shouldn't require you to know how to navigate through a series of objects to get to an attribute or behavior.
+
+
+
+Duck typing:
+  Public interfaces that aren't tied to any specific class.
+  They replace dependencies on class with dependencies on messages.
