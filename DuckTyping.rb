@@ -1,24 +1,18 @@
 # A demonstration of duck typing, starting with a bad example
 #
-#Things get more complicated: add a TripCoordinator and Driver class
+#The solution is to implement a Preparer class that responds to prepare_trip.
+#Any object that responds to prepare_trip is a Preparer. That's it!
+#This is called a duck type.
+
+#Notice that the Preparer class isn't explicity defined anywhere; it's abstract.
+#Be sure to use good tests! They're your documentation.
 
 class Trip
   attr_reader :bicycles, :customers, :vehicle
 
-  # The preparer argument could be of any class
-  # If you happen to pass an instance of Mechanic (see below), it works.
   def prepare(preparers)
-    #The argument was set up to handle a Mechanic
-    #Now it must be expanded to include every kind of preparer.
     preparers.each {|preparer|
-      case preparer
-      when Mechanic
-        preparer.prepare_bicycles(bicycles)
-      when TripCoordinator
-        preparer.buy_food(customers)
-      when Driver
-        preparer.gas_up(vehicle)
-        preparer.fill_water_tank(vehicle)
+        preparer.prepare_trip(self)
       end
     }
   end
@@ -27,8 +21,8 @@ class Trip
 end
 
 class Mechanic
-  def prepare_bicycles(bicycles)
-    bicycles.each {|bicycle| prepare_bicycle(bicycle)}
+  def prepare_trip(trip)
+    trip.bicycles.each {|bicycle| prepare_bicycle(bicycle)}
   end
 
   def prepare_bicycle(bicycle)
@@ -37,17 +31,17 @@ class Mechanic
 end
 
 class TripCoordinator
-  def buy_food(customers)
+  def prepare_trip(trip)
+    buy_food(trip.customers)
     #...
   end
 end
 
 class Driver
-  def gas_up(vehicle)
-    #...
-  end
-
-  def fill_water_tank(vehicle)
+  def prepare_trip(trip)
+    vehicle = trip.vehicle
+    gas_up(vehicle)
+    fill_water_tank(vehicle)
     #...
   end
 end

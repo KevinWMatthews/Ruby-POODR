@@ -93,3 +93,12 @@ Law of Demeter
 Duck typing:
   Public interfaces that aren't tied to any specific class.
   They replace dependencies on class with dependencies on messages.
+  Multiple classes respond to (implement) the same method, essentailly.
+
+Polymorphism: many forms
+  Here a single message has many forms.
+  Many different objects respond to the same message.
+  Senders don't care about the class of the receiver.
+  Receivers implement their own behavior.
+
+  Polymorphic methods must be interchangeable from the sender's point of view.
