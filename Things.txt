@@ -65,3 +65,25 @@ Messages are sent by interfaces; much of design concerns creating interfaces.
 Interfaces can be within classes or across classes (which defines a virtual class?).
 A public interface should read like a descript of the class's responsibilities. It should be stable.
 A private interface handles all the details. It may not even be referenced in tests. Is is changeable.
+
+You'll notice the classes first, but concentrate on the messages.
+Who sends a message? Who responds to the message?
+Don't ask/tell how, ask/tell what.
+Yikes, see figure 4.7
+
+Interfaces:
+  Create explicit interfaces, whether public or private
+
+!!Whoa, donot test private methods? Or segregate tests. !!
+
+
+
+Law of Demeter
+  Demeter restricts the set of objects to which a method may send messages.
+  Only use one dot.
+  For example:
+    customer.bicycle.wheel.tire
+    If tire changes, Customer may be broken.
+    Too much context: trip requires a bicycle with a wheel and a tire.
+    Customer can't be reused for much else.
+  Your design shouldn't require you to know how to navigate through a series of objects to get to an attribute or behavior.
